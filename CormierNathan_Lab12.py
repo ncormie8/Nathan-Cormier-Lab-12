@@ -17,7 +17,7 @@ csv_out = pd.read_csv(r'C:\Users\natha\Desktop\UWO\2024-2025\1st Semester\Physic
 csv_data_all = np.array(csv_out)
 
 # by reading the csv, I know I need only the data from rows 327 to 446 for 1981 to 1990
-csv_data_81_90 = csv_data_all[327:446,:]
+csv_data_81_90 = csv_data_all[327-57:446-57,:]
 print(csv_data_81_90)
 
 # 1b)
