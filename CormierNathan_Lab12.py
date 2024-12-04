@@ -1,6 +1,7 @@
 import numpy as np
 import scipy as sp
 import pandas as pd
+from matplotlib import pyplot as plt
 
 # Part 1
 
@@ -8,7 +9,6 @@ import pandas as pd
 # Read the data from the file and use a method to select data only
 # from dates between 1981 and 1990. Plot the measurements to check
 # that this selection reproduces figure 5.1 in the text.
-
 
 # reading the csv file from its raw string path and assigning it to csv_out
 csv_out = pd.read_csv(r'C:\Users\natha\Desktop\UWO\2024-2025\1st Semester\Physics 3926 - Computer simulations\Python\co2_mm_mlo.csv',skiprows=57)
@@ -20,11 +20,18 @@ csv_data_all = np.array(csv_out)
 start_index = 327-59
 end_index = 446-58
 
-# by reading the csv, I know I need only the data from rows 327 to 446 for 1981 to 1990
+# by reading the csv, I know I need only the data from rows start_index to end_index for 1981 to 1990
 csv_data_81_90 = csv_data_all[start_index:end_index,:]
+print(np.shape(csv_data_81_90))
+
+# plotting the monthly average ppm of CO2 from 1981 to 1990
+t_axis = csv_data_81_90[0:119,2]
+y_axis_CO2 = csv_data_81_90[0:119,3]
+
+plt.plot()
 
 
-# 1b)
+# 1b) (SEE PAGE 137)
 # Detrend the 9 year dataset by fitting a low order polynomial with
 # np.polynomial or sp.signal.detrend, and subtract the fit prediction
 # from each data point to obtain the residuals. You need to use your
