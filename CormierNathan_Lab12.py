@@ -12,9 +12,14 @@ import pandas as pd
 
 # reading the csv file from its raw string path and assigning it to csv_out
 csv_out = pd.read_csv(r'C:\Users\natha\Desktop\UWO\2024-2025\1st Semester\Physics 3926 - Computer simulations\Python\co2_mm_mlo.csv',skiprows=57)
+
 # isolating only the needed data into easily manipulable np array
-csv_data = np.array(csv_out)
-print(csv_data[0,:])
+csv_data_all = np.array(csv_out)
+
+# by reading the csv, I know I need only the data from rows 327 to 446 for 1981 to 1990
+csv_data_81_90 = csv_data_all[327:446,:]
+print(csv_data_81_90)
+
 # 1b)
 # Detrend the 9 year dataset by fitting a low order polynomial with
 # np.polynomial or sp.signal.detrend, and subtract the fit prediction
