@@ -16,9 +16,13 @@ csv_out = pd.read_csv(r'C:\Users\natha\Desktop\UWO\2024-2025\1st Semester\Physic
 # isolating only the needed data into easily manipulable np array
 csv_data_all = np.array(csv_out)
 
+# defining the index values to isolate data from 1981 to 1990 (inclusive) 
+start_index = 327-59
+end_index = 446-58
+
 # by reading the csv, I know I need only the data from rows 327 to 446 for 1981 to 1990
-csv_data_81_90 = csv_data_all[327-59:446-59,:]
-print(csv_data_81_90)
+csv_data_81_90 = csv_data_all[start_index:end_index,:]
+
 
 # 1b)
 # Detrend the 9 year dataset by fitting a low order polynomial with
