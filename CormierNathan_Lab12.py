@@ -1,5 +1,6 @@
 import numpy as np
 import scipy as sp
+import pandas as pd
 
 # Part 1
 
@@ -8,6 +9,12 @@ import scipy as sp
 # from dates between 1981 and 1990. Plot the measurements to check
 # that this selection reproduces figure 5.1 in the text.
 
+
+# reading the csv file from its raw string path and assigning it to csv_out
+csv_out = pd.read_csv(r'C:\Users\natha\Desktop\UWO\2024-2025\1st Semester\Physics 3926 - Computer simulations\Python\co2_mm_mlo.csv',skiprows=57)
+# isolating only the needed data into easily manipulable np array
+csv_data = np.array(csv_out)
+print(csv_data[0,:])
 # 1b)
 # Detrend the 9 year dataset by fitting a low order polynomial with
 # np.polynomial or sp.signal.detrend, and subtract the fit prediction
@@ -21,4 +28,5 @@ import scipy as sp
 # shows the residuals (data minus model). Include this plot in your
 # submission as CormierNathan_Lab12_Fig1.png
 
- 
+# REFERNCES:
+# CormierNathan_Project3.py - adapted 
