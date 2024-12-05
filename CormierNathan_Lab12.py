@@ -91,3 +91,19 @@ plt.show()
 
 # Use functions in numpy.fft or scipy.fftpack to estimate the periods present in your fit residuals.
 # Do(es) the period(s) you obtain agree with your trial and error estimate?
+
+# defining a fucntion sinusoid to generate a sin_fit of the form given in the problem description 
+def sinusoid(t, args):
+    A = args[0] 
+    T = args[1]
+    phi = args[2]
+
+    f = np.zeros(np.size(t))
+    f = A*np.sin(2*np.pi*(t/T) + phi)
+    
+    return f
+
+args = [3,1,0,-1]
+sin_fit = sinusoid(t_axis,args)
+plt.plot(t_axis,sin_fit)
+plt.show()
