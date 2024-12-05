@@ -166,3 +166,23 @@ new_T = 1/new_freq
 # first reached 400 ppm and compare this with the actual date when it happened. Make a
 # plot of your model and data and include this plot in your submission as 
 # LastnameFirstname_Lab12_Fig2.png.
+
+# defining parameters for times and CO2 concetrations for given data points from the csv
+t_axisall = csv_data_all[:,2]      
+y_axis_CO2all = csv_data_all[:,3]
+
+# determining a new equation for a polynomial fit for all csv data
+poly_fit_all = np.polynomial.Polynomial.fit(t_axisall,y_axis_CO2all,deg=3)
+
+
+poly_fit_all_use = poly_fit_all(t_axisall)
+sin_fit_all = sinusoid(t_axisall,args_tANDe)
+
+
+ultra_fit = sin_fit_all + poly_fit_all_use
+
+plt.plot(t_axisall,ultra_fit,'-.',t_axisall,y_axis_CO2all,'-')
+plt.xlabel('Year')
+plt.ylabel('CO2 (ppm)')
+plt.title('Average ppm CO2 over time')
+plt.show()
