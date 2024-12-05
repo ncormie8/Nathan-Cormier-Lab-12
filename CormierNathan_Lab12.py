@@ -2,7 +2,9 @@ import numpy as np
 import scipy as sp
 import pandas as pd
 from matplotlib import pyplot as plt
-from datetime import datetime , timedelta
+
+# Link to my GitHub Repository
+# https://github.com/ncormie8/Nathan-Cormier-Lab-12
 
 # REFERENCES:
 # CormierNathan_Project3.py - adapted csv reading code for part 1a)
