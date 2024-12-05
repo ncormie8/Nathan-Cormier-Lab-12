@@ -36,7 +36,7 @@ y_axis_CO2 = csv_data_81_90ex[:,3]  # setting the ppm CO2 to the average measure
 # reproducing the plot from Figure 5.1 in the textbook (with nicer formatting)
 plt.xlabel('Year')
 plt.ylabel('CO2 (ppm)')
-plt.title('Average ppm CO2 from 1981 to 1990 (exclusive)')
+plt.title('Average CO2 concentration from 1981 to 1990 (exclusive)')
 plt.plot(t_axis,y_axis_CO2,'-',c='k')
 plt.grid()
 plt.show()
@@ -66,26 +66,28 @@ residuals = y_axis_CO2-poly_fit_plot
 # defining 1 figure with 2 data sets
 fig, (ax1,ax2) = plt.subplots(2)
 
-# formatting and labeling for the top panel graph (original data with trendline)
-ax1.set_title('Original data with the fitted longterm trendline')
-ax1.set_xlabel('Year')
-ax1.set_ylabel('CO2 (ppm)')
 
 # plotting the original data with polynomial fit curve overtop over t_axis
 ax1.plot(t_axis,y_axis_CO2,'-.0',t_axis,poly_fit_plot,'.') 
 
-# formatting and labeling for the bottom panel graph (residual data)
-ax2.set_title('Residuals')
-ax2.set_xlabel('Year')
-ax2.set_ylabel('Residual CO2 (ppm)')
+# formatting and labeling for the top panel graph (original data with trendline)
+ax1.set_title('Original data with the fitted longterm trendline')
+ax1.set_xlabel('Year')
+ax1.set_ylabel('CO2 (ppm)')
+ax1.legend(['Concentration Data','Polynomial Fit Curve'],loc=0)
+ax1.grid()
 
 # plotting the residual data over t_axis 
 ax2.plot(t_axis,residuals,'-',c='k')
 
+# formatting and labeling for the bottom panel graph (residual data)
+ax2.set_title('Residual CO2 over time')
+ax2.set_xlabel('Year')
+ax2.set_ylabel('Residual CO2')
+ax2.grid()
+
 # fixes layout issue, stops plots from having overlapping titles
 fig.tight_layout()
-ax1.grid()
-ax2.grid()
 plt.show()
 
 #--------------------------------------------------#
@@ -134,8 +136,8 @@ sin_fit_tANDe = sinusoid(t_axis,args_tANDe)
 plt.plot(t_axis,residuals,'-',t_axis,sin_fit_tANDe,'-.')
 plt.title('Residual CO2 data with overlayed estimated sinusoidal fit curve')
 plt.xlabel('Year')
-plt.ylabel('Residual CO2 (ppm)')
-plt.legend(['Residual CO2 data','Estimated sin fit curve'],loc=0)
+plt.ylabel('Residual CO2')
+plt.legend(['Residual CO2 data','Estimated Sinusoidal Fit Curve'],loc=0)
 plt.grid()
 plt.show()
 
