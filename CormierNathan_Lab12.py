@@ -38,6 +38,7 @@ plt.xlabel('Year')
 plt.ylabel('CO2 (ppm)')
 plt.title('Average ppm CO2 from 1981 to 1990 (exclusive)')
 plt.plot(t_axis,y_axis_CO2,'-',c='k')
+plt.grid()
 plt.show()
 
 # 1b) (SEE PAGE 137)
@@ -83,6 +84,8 @@ ax2.plot(t_axis,residuals,'-',c='k')
 
 # fixes layout issue, stops plots from having overlapping titles
 fig.tight_layout()
+ax1.grid()
+ax2.grid()
 plt.show()
 
 #--------------------------------------------------#
@@ -132,7 +135,8 @@ plt.plot(t_axis,residuals,'-',t_axis,sin_fit_tANDe,'-.')
 plt.title('Residual CO2 data with overlayed estimated sinusoidal fit curve')
 plt.xlabel('Year')
 plt.ylabel('Residual CO2 (ppm)')
-plt.legend(['Residual CO2 data','Estimated sin fit curve'])
+plt.legend(['Residual CO2 data','Estimated sin fit curve'],loc=0)
+plt.grid()
 plt.show()
 
 # Since the trial and error sinusoid fits the residuals plot quite well, there is no indication
@@ -184,10 +188,12 @@ sin_fit_all = sinusoid(t_axisall,args_tANDe)
 complete_model = sin_fit_all + poly_fit_all_use
 
 # plotting code to generate plot of modeled CO2 concentrations over time
-plt.plot(t_axisall,complete_model,'-',c='k')
+plt.plot(t_axisall,complete_model,'-',t_axisall,y_axis_CO2all,'--')
 plt.xlabel('Year')
-plt.ylabel('Projected concentration of CO2 (ppm)')
-plt.title('Proposed time-model of atmospheric CO2 concentration (ppm)')
+plt.ylabel('Atmospheric CO2 concentration (ppm)')
+plt.title('Projected & Actual concentrations of atmospheric CO2 overtime')
+plt.grid()
+plt.legend(['Projected Concentration','Actual Concentration'],loc=0)
 plt.show()
     
 # finding the point in time where the projected CO2 concentration is closest to 400 ppm
