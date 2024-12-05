@@ -156,3 +156,13 @@ new_T = 1/new_freq
 # Yes, the period obtained using fft analysis aligns well with the estimated value.
 # The estimated period was 1, and the calcuated value is 0.9996000000001003.
 
+#--------------------------------------------------#
+
+# Part 3
+
+# Combine your polynomial and sinusoidal fits on the 1981-1990 to propose a model for
+# the time variation of the CO2 concentration. How well does you model fit the data outside
+# of the 1981-1990 window? Use your model to predict when the atmospheric concentration
+# first reached 400 ppm and compare this with the actual date when it happened. Make a
+# plot of your model and data and include this plot in your submission as 
+# LastnameFirstname_Lab12_Fig2.png.
