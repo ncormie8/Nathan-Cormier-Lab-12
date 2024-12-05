@@ -36,7 +36,7 @@ y_axis_CO2 = csv_data_81_90ex[:,3]  # setting the ppm CO2 to the average measure
 plt.xlabel('Year')
 plt.ylabel('CO2 (ppm)')
 plt.title('Average ppm CO2 from 1981 to 1990 (exclusive)')
-plt.plot(t_axis,y_axis_CO2,'-.')
+plt.plot(t_axis,y_axis_CO2,'-',c='k')
 plt.show()
 
 # 1b) (SEE PAGE 137)
@@ -174,14 +174,15 @@ y_axis_CO2all = csv_data_all[:,3]
 # determining a new equation for a polynomial fit for all csv data
 poly_fit_all = np.polynomial.Polynomial.fit(t_axisall,y_axis_CO2all,deg=3)
 
-
+# determining new polynomial and sinusoidal fits to use for all times
 poly_fit_all_use = poly_fit_all(t_axisall)
 sin_fit_all = sinusoid(t_axisall,args_tANDe)
 
+# adding the polynomial and sinusoidal fits together to create a complete model of CO2
+# concentration changes overtime
+complete_model = sin_fit_all + poly_fit_all_use
 
-ultra_fit = sin_fit_all + poly_fit_all_use
-
-plt.plot(t_axisall,ultra_fit,'-.',t_axisall,y_axis_CO2all,'-')
+plt.plot(t_axisall,complete_model,'-',c='k')
 plt.xlabel('Year')
 plt.ylabel('CO2 (ppm)')
 plt.title('Average ppm CO2 over time')
