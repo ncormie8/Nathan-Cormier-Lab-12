@@ -79,3 +79,8 @@ ax2.plot(t_axis,y_axis_CO2-poly_fit_plot,'-',c='k')
 # fixes layout issue, stops plots from having overlapping titles
 fig.tight_layout()
 plt.show()
+
+#--------------------------------------------------#
+
+# Part 2
+
