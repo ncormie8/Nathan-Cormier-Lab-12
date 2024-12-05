@@ -194,12 +194,17 @@ plt.show()
 diffs_model = np.abs(complete_model-400)
 t400model = t_axisall[np.argmin(diffs_model)]
 CO2_400model = complete_model[np.argmin(diffs_model)]
+
+# finding the row where the projected time to reach 400 ppm occurs to extract the date
 csv_row_model = np.argwhere(csv_data_all[:,2]==t400model)
-print(csv_row_model)
-print(csv_data_all[int(csv_row_model),:])
+csv_row_m = csv_row_model[0,0]
 
-
-# print('At t = '+str(t400model)+' the projected CO2 concentration is : '+ str(CO2_400model))
+# determining the year, month, and day the the model projects 400 ppm will be reached in a MM/DD/YYYY format
+year_m = int(csv_data_all[csv_row_m,0])
+month_m = int(csv_data_all[csv_row_m,1])
+day_m = int((t400model - year_m)*365)
+model_400_MMDDYY = str(month_m) + '/' + str(day_m) + '/' + str(year_m)
+print('On '+model_400_MMDDYY+' the projected concentration of CO2 reached '+str(CO2_400model)+' ppm.')
 
 # # finding the point in time where the actual CO2 concentration is closest to 400 ppm
 # diffs_data = np.abs(y_axis_CO2all-400)
