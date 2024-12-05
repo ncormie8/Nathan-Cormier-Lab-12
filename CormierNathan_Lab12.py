@@ -3,6 +3,10 @@ import scipy as sp
 import pandas as pd
 from matplotlib import pyplot as plt
 
+# REFERENCES:
+# CormierNathan_Project3.py - adapted csv reading code for part 1a)
+# Numerical Methods For Physics (Python) - Alejandro L. Garcia 2E revised, 2017. pgs 107 to 139
+
 # Part 1
 
 # 1a)
@@ -41,11 +45,18 @@ plt.show()
 # judgement to decide what order polynomial to adopt, and a critical
 # consideration is that you are going to need to extrapolate your fit.
 
+# using np.polynomial to generate a polynomial which fits to time and CO2 data
+poly_fit = np.polynomial.Polynomial.fit(t_axis,y_axis_CO2,deg=3)
+
+# computing the values of the fit polynomial across all times for plotti
+poly_fit_plot = poly_fit(t_axis)
+
+plt.plot(t_axis,y_axis_CO2,'-.',t_axis,poly_fit_plot,'.')
+plt.show()
+
 # 1c)
 # Produce a 2 panel plot (subplots?) in which the top panel shows the
 # original data with the fitted long term trend, and the bottom panel
 # shows the residuals (data minus model). Include this plot in your
 # submission as CormierNathan_Lab12_Fig1.png
 
-# REFERNCES:
-# CormierNathan_Project3.py - adapted 
