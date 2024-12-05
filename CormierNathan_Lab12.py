@@ -84,3 +84,10 @@ plt.show()
 
 # Part 2
 
+# By trial and error, experiment with how well you can fit the periodic variation of the residuals with
+# a simple sinusoidal function of the form f(t) = A sin(2pi(t/T) + phi). Note that you have 3 parameters 
+# that you can adjust: the amplitude A, the period T, and the phase phi. Does the attempt to fit this
+# sinusoid suggest that you need to revisit yout polynomial fit?
+
+# Use functions in numpy.fft or scipy.fftpack to estimate the periods present in your fit residuals.
+# Do(es) the period(s) you obtain agree with your trial and error estimate?
