@@ -57,6 +57,9 @@ poly_fit_plot = poly_fit(t_axis)
 # shows the residuals (data minus model). Include this plot in your
 # submission as CormierNathan_Lab12_Fig1.png
 
+# defining residuals y axis values
+residuals = y_axis_CO2-poly_fit_plot
+
 # defining 1 figure with 2 data sets
 fig, (ax1,ax2) = plt.subplots(2)
 
@@ -74,7 +77,7 @@ ax2.set_xlabel('Year')
 ax2.set_ylabel('Residual CO2 (ppm)')
 
 # plotting the residual data over t_axis 
-ax2.plot(t_axis,y_axis_CO2-poly_fit_plot,'-',c='k')
+ax2.plot(t_axis,residuals,'-',c='k')
 
 # fixes layout issue, stops plots from having overlapping titles
 fig.tight_layout()
@@ -92,18 +95,32 @@ plt.show()
 # Use functions in numpy.fft or scipy.fftpack to estimate the periods present in your fit residuals.
 # Do(es) the period(s) you obtain agree with your trial and error estimate?
 
-# defining a fucntion sinusoid to generate a sin_fit of the form given in the problem description 
+# defining fucntion sinusoid to generate a sinusoidal fit curve of the form given in the problem
 def sinusoid(t, args):
-    A = args[0] 
-    T = args[1]
-    phi = args[2]
+    '''Generates array of values f corresponding to the value of f at time t. f(t) has the form
+    A*np.sin(2*np.pi*(t/T) + phi) + y_offset. Intakes parameters t as the array of all times which f(t) should
+    be calculated, and args() as an array containing the amplitude, period, phase shift, and y offset to be
+    used when calculating f(t). Returns array containing all values of f at all times t.'''
+    A = args[0]         # ampltiude set to first input argument
+    T = args[1]         # period set to second input argument
+    phi = args[2]       # phase shift set to third input argument
+    y_offset = args[3]  # y offset set to the fourth input argument
 
+    # initializing zeros sin function value array
     f = np.zeros(np.size(t))
-    f = A*np.sin(2*np.pi*(t/T) + phi)
+
+    # calculating all of the values of the sin function over the input time range      
+    f = A*np.sin(2*np.pi*(t/T) + phi) + y_offset
     
     return f
 
-args = [3,1,0,-1]
-sin_fit = sinusoid(t_axis,args)
-plt.plot(t_axis,sin_fit)
+# trial and error fit curve
+amp = 3
+est_period = 1
+phase_shift = -np.pi/8
+y_offset = -1
+
+args = [amp,est_period,phase_shift,y_offset]
+sin_fit_tANDe = sinusoid(t_axis,args)
+plt.plot(t_axis,sin_fit_tANDe)
 plt.show()
