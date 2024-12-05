@@ -58,12 +58,12 @@ poly_fit_plot = poly_fit(t_axis)
 # submission as CormierNathan_Lab12_Fig1.png
 
 fig, (ax1,ax2) = plt.subplots(2)
-ax1.set_title = 'Original data with the fitted longterm trendline'  
-ax1.set_xlabel = 'Year'
-ax1.set_ylabel = 'CO2 (ppm)' 
-ax2.set_title = 'Residuals'
-ax2.set_xlabel = 'Year'
-ax2.set_ylabel = 'CO2 (ppm) - poly_fit'
+ax1.set_title('Original data with the fitted longterm trendline'  )
+ax1.set_xlabel('Year')
+ax1.set_ylabel('CO2 (ppm)') 
+ax2.set_title('Residuals')
+ax2.set_xlabel('Year')
+ax2.set_ylabel('CO2 (ppm) - poly_fit')
 ax1.plot(t_axis,y_axis_CO2,'-.0',t_axis,poly_fit_plot,'.')
 ax2.plot(t_axis,y_axis_CO2-poly_fit_plot,'-')
 plt.show()
