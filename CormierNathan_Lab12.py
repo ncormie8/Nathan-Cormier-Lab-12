@@ -2,6 +2,7 @@ import numpy as np
 import scipy as sp
 import pandas as pd
 from matplotlib import pyplot as plt
+from datetime import datetime , timedelta
 
 # REFERENCES:
 # CormierNathan_Project3.py - adapted csv reading code for part 1a)
@@ -188,15 +189,20 @@ plt.xlabel('Year')
 plt.ylabel('Projected concentration of CO2 (ppm)')
 plt.title('Proposed time-model of atmospheric CO2 concentration (ppm)')
 plt.show()
-
+    
 # finding the point in time where the projected CO2 concentration is closest to 400 ppm
 diffs_model = np.abs(complete_model-400)
 t400model = t_axisall[np.argmin(diffs_model)]
 CO2_400model = complete_model[np.argmin(diffs_model)]
-print('At t = '+str(t400model)+' the projected CO2 concentration is : '+ str(CO2_400model))
+csv_row_model = np.argwhere(csv_data_all[:,2]==t400model)
+print(csv_row_model)
+print(csv_data_all[int(csv_row_model),:])
 
-# finding the point in time where the actual CO2 concentration is closest to 400 ppm
-diffs_data = np.abs(y_axis_CO2all-400)
-t400data = t_axisall[np.argmin(diffs_data)]
-CO2_400data = y_axis_CO2all[np.argmin(diffs_data)]
-print('at t = '+str(t400data)+' the actual CO2 concentration is : '+ str(CO2_400data))
+
+# print('At t = '+str(t400model)+' the projected CO2 concentration is : '+ str(CO2_400model))
+
+# # finding the point in time where the actual CO2 concentration is closest to 400 ppm
+# diffs_data = np.abs(y_axis_CO2all-400)
+# t400data = t_axisall[np.argmin(diffs_data)]
+# CO2_400data = y_axis_CO2all[np.argmin(diffs_data)]
+# print('at t = '+str(t400data)+' the actual CO2 concentration is : '+ str(CO2_400data))
