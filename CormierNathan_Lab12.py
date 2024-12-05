@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 
 # REFERENCES:
 # CormierNathan_Project3.py - adapted csv reading code for part 1a)
+# lecture12b_Ftdemo.py - adapted frequency determination code for part 2
 # Numerical Methods For Physics (Python) - Alejandro L. Garcia 2E revised, 2017. pgs 107 to 139
 
 # Part 1
@@ -20,7 +21,7 @@ csv_out = pd.read_csv(r'C:\Users\natha\Desktop\UWO\2024-2025\1st Semester\Physic
 # isolating only the needed data into easily manipulable np array
 csv_data_all = np.array(csv_out)
 
-# defining the index values to isolate data from 1981 to 1990 (exclusive) 
+# defining the index values to isolate data from [1981:1990) (exclusive) 
 start_index = 327-54
 end_index = 434-53
 
@@ -28,8 +29,8 @@ end_index = 434-53
 csv_data_81_90ex = csv_data_all[start_index:end_index,:]
 
 # plotting the monthly average ppm of CO2 from 1981 to 1990
-t_axis = csv_data_81_90ex[0:119,2]      # setting the time equal to the decimal dates
-y_axis_CO2 = csv_data_81_90ex[0:119,3]  # setting the ppm CO2 to the average measured values from the csv
+t_axis = csv_data_81_90ex[:,2]      # setting the time equal to the decimal dates
+y_axis_CO2 = csv_data_81_90ex[:,3]  # setting the ppm CO2 to the average measured values from the csv
 
 # reproducing the plot from Figure 5.1 in the textbook (with nicer formatting)
 plt.xlabel('Year')
@@ -133,8 +134,25 @@ plt.ylabel('Residual CO2 (ppm)')
 plt.legend(['Residual CO2 data','Estimated sin fit curve'])
 plt.show()
 
+# Since the trial and error sinusoid fits the residuals plot quite well, there is no indication
+# that I need to revisit my polynomial fit.
+
 # np.fft SECTION
-fft = np.fft.fft(residuals)
-print(np.shape(fft))
-# plt.plot(t_axis,residuals,'-',t_axis,fft,'-.')
-# plt.show()
+spacing = t_axis[1]-t_axis[0]
+
+# performing fft analysis to determine new period for sinusoidal fit curve
+res_t = np.fft.fft(residuals)
+freqs = np.fft.fftfreq(np.size(t_axis),spacing)
+res_t_positive = res_t[:np.size(t_axis)//2]
+freqs_positive = freqs[:np.size(t_axis)//2]
+
+# finding the dominant frequency from FFT
+biggest_freq= np.argmax(np.abs(res_t_positive))
+new_freq = freqs[biggest_freq]
+
+# calculating the new period from the new frequency
+new_T = 1/new_freq
+
+# Yes, the period obtained using fft analysis aligns well with the estimated value.
+# The estimated period was 1, and the calcuated value is 0.9996000000001003.
+
