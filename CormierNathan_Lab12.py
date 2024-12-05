@@ -119,7 +119,7 @@ def sinusoid(t, args):
 # trial and error fit curve variable declaration
 amp = 3
 est_period = 1
-phase_shift = -np.pi/4
+phase_shift = -np.pi/8
 y_offset = 0
 args_tANDe = [amp,est_period,phase_shift,y_offset]
 
@@ -182,8 +182,21 @@ sin_fit_all = sinusoid(t_axisall,args_tANDe)
 # concentration changes overtime
 complete_model = sin_fit_all + poly_fit_all_use
 
+# plotting code to generate plot of modeled CO2 concentrations over time
 plt.plot(t_axisall,complete_model,'-',c='k')
 plt.xlabel('Year')
-plt.ylabel('CO2 (ppm)')
-plt.title('Average ppm CO2 over time')
+plt.ylabel('Projected concentration of CO2 (ppm)')
+plt.title('Proposed time-model of atmospheric CO2 concentration (ppm)')
 plt.show()
+
+# finding the point in time where the projected CO2 concentration is closest to 400 ppm
+diffs_model = np.abs(complete_model-400)
+t400model = t_axisall[np.argmin(diffs_model)]
+CO2_400model = complete_model[np.argmin(diffs_model)]
+print('At t = '+str(t400model)+' the projected CO2 concentration is : '+ str(CO2_400model))
+
+# finding the point in time where the actual CO2 concentration is closest to 400 ppm
+diffs_data = np.abs(y_axis_CO2all-400)
+t400data = t_axisall[np.argmin(diffs_data)]
+CO2_400data = y_axis_CO2all[np.argmin(diffs_data)]
+print('at t = '+str(t400data)+' the actual CO2 concentration is : '+ str(CO2_400data))
