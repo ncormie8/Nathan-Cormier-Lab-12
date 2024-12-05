@@ -114,13 +114,20 @@ def sinusoid(t, args):
     
     return f
 
-# trial and error fit curve
+# trial and error fit curve variable declaration
 amp = 3
 est_period = 1
-phase_shift = -np.pi/8
-y_offset = -1
+phase_shift = -np.pi/4
+y_offset = 0
+args_tANDe = [amp,est_period,phase_shift,y_offset]
 
-args = [amp,est_period,phase_shift,y_offset]
-sin_fit_tANDe = sinusoid(t_axis,args)
-plt.plot(t_axis,sin_fit_tANDe)
+# generating my trial and error sinusoidal curve of best for for residuals
+sin_fit_tANDe = sinusoid(t_axis,args_tANDe)
+
+# plotting 
+plt.plot(t_axis,residuals,'-',t_axis,sin_fit_tANDe,'-.')
+plt.title('Residual CO2 data with overlayed estimated sinusoidal fit curve')
+plt.xlabel('Year')
+plt.ylabel('Residual CO2 (ppm)')
+plt.legend(['Residual CO2 data','Estimated sin fit curve'])
 plt.show()
