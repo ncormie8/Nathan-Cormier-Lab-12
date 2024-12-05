@@ -57,19 +57,25 @@ poly_fit_plot = poly_fit(t_axis)
 # shows the residuals (data minus model). Include this plot in your
 # submission as CormierNathan_Lab12_Fig1.png
 
+# defining 1 figure with 2 data sets
 fig, (ax1,ax2) = plt.subplots(2)
-ax1.set_title('Original data with the fitted longterm trendline'  )
+
+# formatting and labeling for the top panel graph (original data with trendline)
+ax1.set_title('Original data with the fitted longterm trendline')
 ax1.set_xlabel('Year')
-ax1.set_ylabel('CO2 (ppm)') 
+ax1.set_ylabel('CO2 (ppm)')
+
+# plotting the original data with polynomial fit curve overtop over t_axis
+ax1.plot(t_axis,y_axis_CO2,'-.0',t_axis,poly_fit_plot,'.') 
+
+# formatting and labeling for the bottom panel graph (residual data)
 ax2.set_title('Residuals')
 ax2.set_xlabel('Year')
-ax2.set_ylabel('CO2 (ppm) - poly_fit')
-ax1.plot(t_axis,y_axis_CO2,'-.0',t_axis,poly_fit_plot,'.')
-ax2.plot(t_axis,y_axis_CO2-poly_fit_plot,'-')
-plt.show()
+ax2.set_ylabel('Residual CO2 (ppm)')
 
-# plt.xlabel('Year')
-# plt.ylabel('CO2 (ppm)')
-# plt.title('Average ppm CO2 from 1981 to 1990 (exclusive)')
-# plt.plot(t_axis,y_axis_CO2,'-.')
-# plt.show()
+# plotting the residual data over t_axis 
+ax2.plot(t_axis,y_axis_CO2-poly_fit_plot,'-',c='k')
+
+# fixes layout issue, stops plots from having overlapping titles
+fig.tight_layout()
+plt.show()
