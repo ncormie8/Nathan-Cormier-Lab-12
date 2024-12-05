@@ -51,12 +51,25 @@ poly_fit = np.polynomial.Polynomial.fit(t_axis,y_axis_CO2,deg=3)
 # computing the values of the fit polynomial across all times for plotti
 poly_fit_plot = poly_fit(t_axis)
 
-plt.plot(t_axis,y_axis_CO2,'-.',t_axis,poly_fit_plot,'.')
-plt.show()
-
 # 1c)
 # Produce a 2 panel plot (subplots?) in which the top panel shows the
 # original data with the fitted long term trend, and the bottom panel
 # shows the residuals (data minus model). Include this plot in your
 # submission as CormierNathan_Lab12_Fig1.png
 
+fig, (ax1,ax2) = plt.subplots(2)
+ax1.set_title = 'Original data with the fitted longterm trendline'  
+ax1.set_xlabel = 'Year'
+ax1.set_ylabel = 'CO2 (ppm)' 
+ax2.set_title = 'Residuals'
+ax2.set_xlabel = 'Year'
+ax2.set_ylabel = 'CO2 (ppm) - poly_fit'
+ax1.plot(t_axis,y_axis_CO2,'-.0',t_axis,poly_fit_plot,'.')
+ax2.plot(t_axis,y_axis_CO2-poly_fit_plot,'-')
+plt.show()
+
+# plt.xlabel('Year')
+# plt.ylabel('CO2 (ppm)')
+# plt.title('Average ppm CO2 from 1981 to 1990 (exclusive)')
+# plt.plot(t_axis,y_axis_CO2,'-.')
+# plt.show()
