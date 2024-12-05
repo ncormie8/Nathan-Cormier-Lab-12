@@ -202,7 +202,7 @@ csv_row_m = csv_row_model[0,0]
 # determining the year, month, and day the the model projects 400 ppm will be reached in a MM/DD/YYYY format
 year_m = int(csv_data_all[csv_row_m,0])
 month_m = int(csv_data_all[csv_row_m,1])
-day_m = int((t400model - year_m)*365)
+day_m = int(((t400model - year_m)*365)-(month_m-1)*(365/12))
 model_400_MMDDYY = str(month_m) + '/' + str(day_m) + '/' + str(year_m)
 print('On '+model_400_MMDDYY+' the projected concentration of CO2 reaches '+str(CO2_400model)+' ppm.')
 
@@ -218,6 +218,13 @@ csv_row_d = csv_row_data[0,0]
 # determining the year, month, and day the the model projects 400 ppm will be reached in a MM/DD/YYYY format
 year_d = int(csv_data_all[csv_row_d,0])
 month_d = int(csv_data_all[csv_row_d,1])
-day_d = int((t400data - year_d)*365)
+day_d = int(((t400data - year_d)*365)-(month_d-1)*(365/12))
 data_400_MMDDYY = str(month_d) + '/' + str(day_d) + '/' + str(year_d)
 print('On '+data_400_MMDDYY+' the actual concentration of CO2 reached '+str(CO2_400data)+' ppm.')
+
+# How well does your model fit the data outside of the 1981-1990 window?
+# ANS: Very well! I graphed it alongside all of the actual data available and it is incredibly similar.
+
+# The accuracy of my model is shown since it determines the date on which the CO2 concentration actually
+# hits 400 ppm exactly! The ppm on that date is not exactly the same, but it is very close and is more than
+# good enough as a model.
